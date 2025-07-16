@@ -8,6 +8,7 @@ const Navigation = () => {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'Services', href: '#services' },
+    { name: 'SIP Calculator', href: '#sip-calculator' },
     { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' },
   ];
