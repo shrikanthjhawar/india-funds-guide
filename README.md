@@ -1,73 +1,146 @@
-# Welcome to your Lovable project
+# WealthGrow - Mutual Fund Distribution Website
 
-## Project info
+A modern, professional website for mutual fund distribution business in India. Built with React, TypeScript, and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/229a0180-211e-433c-958b-8dea293e4381
+## Features
 
-## How can I edit this code?
+- **Professional Design**: Clean, modern interface that builds trust with potential clients
+- **Responsive Layout**: Optimized for all devices (desktop, tablet, mobile)
+- **Indian Market Focus**: Tailored for the Indian mutual fund distribution business
+- **SEBI/AMFI Compliant**: Includes necessary disclaimers and regulatory information
+- **Services Showcase**: Highlights key services like SIP, lump sum investments, and goal-based planning
+- **Contact Forms**: Easy ways for clients to get in touch
+- **SEO Optimized**: Proper meta tags and structure for search engines
 
-There are several ways of editing your application.
+## Sections
 
-**Use Lovable**
+1. **Navigation**: Fixed header with smooth scrolling navigation
+2. **Hero Section**: Compelling value proposition with key statistics
+3. **Services**: Detailed showcase of investment services offered
+4. **About**: Company information and credibility builders
+5. **Contact**: Multiple ways to reach the business
+6. **Footer**: Comprehensive links and legal information
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/229a0180-211e-433c-958b-8dea293e4381) and start prompting.
+## Technology Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- **React 18**: Modern React with hooks and functional components
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first CSS framework with custom design system
+- **Shadcn/ui**: High-quality UI components
+- **Lucide React**: Beautiful icons
+- **Vite**: Fast development and build tool
 
-**Use your preferred IDE**
+## Publishing to GitHub Pages
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Step 1: Create a GitHub Repository
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Go to [GitHub](https://github.com) and create a new repository
+2. Name it something like `mutual-fund-website` or `wealthgrow-website`
+3. Make it public (required for free GitHub Pages)
 
-Follow these steps:
+### Step 2: Connect Your Lovable Project to GitHub
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. In Lovable, click the **GitHub** button in the top right
+2. Click **Connect to GitHub** and authorize the app
+3. Click **Create Repository** and select your GitHub account
+4. Your code will automatically sync to GitHub
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Step 3: Configure GitHub Pages
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. Go to your GitHub repository
+2. Click **Settings** tab
+3. Scroll down to **Pages** section in the left sidebar
+4. Under **Source**, select **GitHub Actions**
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Step 4: Create GitHub Actions Workflow
+
+Create a file `.github/workflows/deploy.yml` in your repository:
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
 ```
 
-**Edit a file directly in GitHub**
+### Step 5: Update Vite Configuration
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Add this to your `vite.config.ts`:
 
-**Use GitHub Codespaces**
+```typescript
+export default defineConfig(({ mode }) => ({
+  base: '/your-repository-name/', // Replace with your actual repository name
+  // ... rest of your config
+}));
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Step 6: Deploy
 
-## What technologies are used for this project?
+1. Commit and push your changes
+2. GitHub Actions will automatically build and deploy your site
+3. Your website will be available at: `https://yourusername.github.io/your-repository-name/`
 
-This project is built with:
+## Customization
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Colors and Branding
+- Update colors in `src/index.css` (CSS variables)
+- Modify the logo and company name in components
+- Replace the hero image with your own
 
-## How can I deploy this project?
+### Content
+- Update company information in `About.tsx`
+- Modify services in `Services.tsx`
+- Update contact details in `Contact.tsx` and `Footer.tsx`
 
-Simply open [Lovable](https://lovable.dev/projects/229a0180-211e-433c-958b-8dea293e4381) and click on Share -> Publish.
+### Images
+- Replace the hero image in `src/assets/`
+- Add your company logo
+- Update favicon in `public/`
 
-## Can I connect a custom domain to my Lovable project?
+## Legal Compliance
 
-Yes, you can!
+⚠️ **Important**: This is a template website. You must:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Update all contact information with your actual details
+2. Verify SEBI registration numbers and compliance requirements
+3. Review all disclaimers with a legal advisor
+4. Ensure all claims and statistics are accurate
+5. Add proper risk disclosure statements
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Support
+
+For any issues or customizations, refer to the [Lovable documentation](https://docs.lovable.dev) or contact support.
+
+## License
+
+This project is created for business use. Please ensure compliance with all applicable regulations and laws.
